@@ -1,0 +1,9 @@
+.js-plotly-plot g.yaxislayer-above g.ytick:nth-of-type(1) text {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .js-plotly-plot .hoverlayer {
+    display: none !important;
+  }
+}
