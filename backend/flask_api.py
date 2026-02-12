@@ -80,5 +80,9 @@ def get_hinnat():
     # print("Palautetaan rivejä:", len(df))
     return jsonify(df.to_dict(orient="records"))
 
+@app.route("/", methods=["GET"])
+def home():
+    return "OK – käytä /api/hinnat", 200
+
 if __name__ == "__main__":
     app.run(debug=True)
