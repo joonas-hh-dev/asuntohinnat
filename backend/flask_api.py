@@ -4,7 +4,7 @@ import requests
 from pyjstat import pyjstat
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5173"])
+CORS(app, origins=["http://localhost:5173","https://joonas-hh-dev.github.io"])
 
 BASE_URL = "https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/ashi/statfin_ashi_pxt_13mu.px"
 
