@@ -21,8 +21,8 @@ export default function useLoadData() {
   useEffect(() => {
     const loadAll = async () => {
       try {
-        // --- GeoJSON ---
-        const geoRes = await fetch("/finland-postal-codes.geojson");
+        // GeoJSON
+        const geoRes = await fetch(`${import.meta.env.BASE_URL}finland-postal-codes.geojson`);
         const geo = await geoRes.json();
 
         const filteredGeo = {
@@ -33,13 +33,13 @@ export default function useLoadData() {
         };
         setGeojson(filteredGeo);
 
-        // --- API ---
+        // API
         const res = await axios.get("https://asuntohinnat-backend.onrender.com/api/hinnat");
         let rows = res.data;
         if (typeof rows === "string") rows = JSON.parse(rows);
         if (!Array.isArray(rows)) rows = [];
 
-        // --- Nimi lookup ---
+        // Nimi lookup
         const lookup = {};
         rows.forEach((r) => {
         const code = r.PostinumeroAlue; // normalisoitu
@@ -56,12 +56,12 @@ export default function useLoadData() {
         setNameLookup(lookup);
         setData(rows);
 
-        // --- Vuodet ---
+        // Vuodet
         const yrs = [...new Set(rows.map((r) => String(r.Vuosi)))].sort();
         setYears(yrs);
         setYear(yrs[yrs.length - 1] || null); // viimeisin vuosi
 
-        // --- Talotyypit ---
+        // Talotyypit
         const tyypit = [...new Set(rows.map((r) => r.Talotyyppi))]
           .filter(Boolean)
           .sort();
