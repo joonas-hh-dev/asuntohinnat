@@ -34,7 +34,7 @@ export default function useLoadData() {
         setGeojson(filteredGeo);
 
         // --- API ---
-        const res = await axios.get("http://127.0.0.1:5000/api/hinnat");
+        const res = await axios.get("https://asuntohinnat-backend.onrender.com/api/hinnat");
         let rows = res.data;
         if (typeof rows === "string") rows = JSON.parse(rows);
         if (!Array.isArray(rows)) rows = [];
@@ -42,7 +42,7 @@ export default function useLoadData() {
         // --- Nimi lookup ---
         const lookup = {};
         rows.forEach((r) => {
-        const code = r.PostinumeroAlue; // nyt jo normalisoitu
+        const code = r.PostinumeroAlue; // normalisoitu
         if (!lookup[code] && r.Nimi) lookup[code] = r.Nimi;
         });
 
