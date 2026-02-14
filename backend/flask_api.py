@@ -20,6 +20,10 @@ HELSINKI_POSTINUMEROT = [
     "00960","00970","00980","00990"
 ]
 
+@app.route("/healthz")
+def healthz():
+    return "ok", 200
+
 @app.route("/api/hinnat", methods=["GET"])
 def get_hinnat():
     query = {
